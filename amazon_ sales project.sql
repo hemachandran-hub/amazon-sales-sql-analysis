@@ -4,7 +4,7 @@ use sara;
 
 drop table if exists amazon;
 
--- Table creation
+-- Table creation 
 
 create table amazon (
 order_id int primary key auto_increment,
