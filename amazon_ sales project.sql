@@ -42,31 +42,32 @@ select distinct brand from amazon;
 
 select distinct subcategory from amazon;
 
-select sum(final_price) as total_sales,
- avg(final_price) as avg_sales
- from amazon;
+select sum(final_price) as total_sales, 
+avg(final_price) as avg_sales, delivery_status
+from amazon
+where delivery_status = 'delivered';
  
- select avg(rating) as avg_rating from amazon; 
+select avg(rating) as avg_rating from amazon; 
  
- select * from amazon; 
+select * from amazon; 
  
- select count(*) from amazon;
+select count(*) from amazon;
  
  -- data cleaning and transformation
  
 select is_returned from amazon
 group by  is_returned;
  
- select * from amazon
- where price is null or 
- final_price is null;
+select * from amazon
+where price is null or 
+final_price is null;
  
- alter table amazon
- add column purchase_year year;
+alter table amazon
+add column purchase_year year;
  
- update amazon
- set purchase_year = year(purchase_date)
- where order_id != '';
+update amazon
+set purchase_year = year(purchase_date)
+where order_id != '';
  
 
  -- Business questions
