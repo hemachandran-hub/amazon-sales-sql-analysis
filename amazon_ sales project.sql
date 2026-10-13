@@ -6,6 +6,7 @@ drop table if exists amazon;
 
 -- Table creation 
 
+
 create table amazon (
 order_id int primary key auto_increment,
 user_id	varchar(20),
@@ -33,7 +34,11 @@ delivery_status varchar(20) null
 
 describe amazon; 
 
--- Data exploration
+-- Data exploration 
+
+select * from amazon; 
+ 
+select count(*) from amazon;
 
 select * from amazon
 limit 10;
@@ -42,19 +47,18 @@ select distinct brand from amazon;
 
 select distinct subcategory from amazon;
 
-select sum(final_price) as total_sales, 
+select sum(final_price) as total_sales,                  -- Total Revenue
 avg(final_price) as avg_sales, delivery_status
 from amazon
 where delivery_status = 'delivered';
  
-select avg(rating) as avg_rating from amazon; 
- 
-select * from amazon; 
- 
-select count(*) from amazon;
- 
+select category, avg(rating) as avg_rating from amazon   -- overall Average rating by category
+group by category;        
+
+
  -- data cleaning and transformation
- 
+
+
 select is_returned from amazon
 group by  is_returned;
  
@@ -71,7 +75,8 @@ where order_id != '';
  
 
  -- Business questions
- 
+
+
  -- Q1. Which category earns the most revenue? Show the total final_price per category, highest first. 
  
  select category, sum(final_price) as total_revenue from amazon
